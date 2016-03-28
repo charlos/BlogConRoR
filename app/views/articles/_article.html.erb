@@ -1,0 +1,8 @@
+<% #if not article.may_publish? %>
+	<%#genera un link para mostrar un articulo%>
+	<h3><%= link_to article.title, article %></h3>
+	<div>
+		<%=article.body%>
+	</div>
+	</br>
+<%#end%>

@@ -1,0 +1,32 @@
+<h1><%=@article.title%></h1>
+<div>
+	<%= @article.body%>
+</div>
+<div>
+	<p>Creado por: 
+		<%if @article.user.nil?%> 
+			<%="Escritor Anonimo"%>
+		<%else%>
+			<%=@article.user.email%>
+		<%end%>
+	</br>
+	Visitas: <%= @article.visists_count%></p>
+</div>
+
+<div><%= link_to "Editar", edit_article_path(@article) %></div>
+<div><%= link_to "Eliminar", @article, method: :delete %></div>
+
+<div>
+	<div class="hr grid_12"></div>
+	<h3>Comentarios</h3>
+	<%= render "comments/form" %>
+	<!-- muestra los comentarios asociados a este articulo -->
+	<ul id="comments-box">
+	<% @article.comments.each do |comment| %>
+		<li>
+			<%= comment.user.email %> dice: <br>
+			<%= comment.body %>
+		</li>
+	<%end%>
+	</ul>
+</div>

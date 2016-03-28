@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeheroWeb</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="wrapper" class="container_12 clearfix">
+
+		<!-- Text Logo -->
+		<h1 id="logo" class="grid_4">Aurelius</h1>
+		
+		<!-- Navigation Menu -->
+		<%= render "partials/navigation" %>
+		
+		<div style="<%= "display: none;" if notice.nil? and alert.nil? %>">
+			<%= notice %> <%= alert %>
+		</div>
+
+		<%= yield %>
+    
+	</div>
+</body>
+</html>

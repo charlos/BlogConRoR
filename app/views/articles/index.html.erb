@@ -1,0 +1,20 @@
+ <h1>Articles#index</h1>
+<p>Find me in app/views/articles/index.html.erb</p>
+</br>
+
+<%= render @articles %>
+<%
+=begin
+
+Es el equivalente a hacer:
+
+@articles.each do |article|
+	render "articles/article", article: article
+end
+
+=end
+%>
+
+<div>
+	<%= will_paginate @articles %>
+</div>

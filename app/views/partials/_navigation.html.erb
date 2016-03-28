@@ -1,0 +1,21 @@
+<ul id="navigation" class="grid_8">
+	<% if user_signed_in? # pregunta si el usuario se encuentra loggeado %>
+		<li>
+			<a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow"><span class="meta"><%= current_user.email %></span><br />Cerrar Sesión</a>
+		</li>
+	<%end%>
+	<% @categories.each do |category| %>
+	<li>
+		<a href="<%= category_path(category) %>"><span class="meta">Categoria</span><br /><%= category.name %></a>
+	</li>
+	<%end%>
+	<li>
+		<a href="<%= articles_path %>"><span class="meta">Articulos</span><br />Todos</a>
+	</li>
+	<li>
+		<a href="<%= root_path %>" class="current"><span class="meta">Principal</span><br />Home</a>
+	</li>
+</ul>
+
+<div class="hr grid_12">&nbsp;</div>
+<div class="clear"></div>

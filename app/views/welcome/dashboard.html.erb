@@ -1,0 +1,12 @@
+<%@articles.each do |article|%>
+	<%#genera un link para mostrar un articulo%>
+	<h1><%= link_to article.title, article %></h1>
+	<div>
+		<%= article.body %>
+		<% if article.may_publish? %>
+			<%# Lo muestro si no esta publicado%>
+			<%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put %>
+		<%end%>
+	</div>
+	</br>
+<%end%>
