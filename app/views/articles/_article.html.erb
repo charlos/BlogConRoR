@@ -1,8 +1,12 @@
-<% #if not article.may_publish? %>
-	<%#genera un link para mostrar un articulo%>
-	<h3><%= link_to article.title, article %></h3>
-	<div>
-		<%=article.body%>
-	</div>
-	</br>
-<%#end%>
+<div class="post-preview">
+    <a href="<%= article_path(article.id) %>">
+        <h2 class="post-title">
+            <%= article.title %>
+        </h2>
+        <h3 class="post-subtitle">
+            <%= article.body.truncate(40)%>
+        </h3>
+    </a>
+    <p class="post-meta">Escrito por <a href="#"><%= article.user.email if not article.user.nil? %></a> el <%= article.updated_at.strftime("%d/%m/%Y") %> </p>
+</div>
+<hr>

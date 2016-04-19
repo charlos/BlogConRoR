@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @header_subtitle = "Articulos Sobre " + @category.name
   end
 
   # GET /categories/new

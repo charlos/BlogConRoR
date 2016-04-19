@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   # para manipular un comentario se debe estar logeado en el sistema
   before_action :authenticate_user!, except: [:show, :index]
-  # para pbtener el articulo que contiene a los comentarios
+  # para obtener el articulo que contiene a los comentarios
   before_action :set_article
 
   # GET /comments

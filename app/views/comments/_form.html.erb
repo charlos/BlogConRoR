@@ -15,12 +15,17 @@
     </div>
   <% end %>
 
-  <!-- se eliminaron :user_id y :article_id para que el usuario no pueda verlos -->
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
+<!-- se eliminaron :user_id y :article_id para que el usuario no pueda verlos -->
+<hr></hr> 
+  <blockquote>
+    <label for="comment_body"><%= @article.user.email%> dice:</label>
+    <textarea name="comment[body]" id="comment_body" rows="5" class="form-control" placeholder="Escriba aquí su comentario" required data-validation-required-message="Please enter a message."></textarea>
+    <p class="help-block text-danger"></p>
+  </blockquote>
+  <div class="row">
+      <div class="form-group col-xs-12">
+          <input name="commit" class="btn btn-default" value="Enviar Comentario" type="submit">
+      </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<hr></hr>
 <% end %>

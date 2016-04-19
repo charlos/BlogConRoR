@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1 style="color:<%= @category.color %>;">Articulos sobre <%= @category.name %></h1>
 <%= render @category.articles.published %>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<% ## link_to 'Edit', edit_category_path(@category) %>
+<% ## link_to 'Back', categories_path %>

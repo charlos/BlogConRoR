@@ -5,4 +5,4 @@
 $(document).on "ajax:success", "form#comments-form", (ev, data)->
 	console.log data
 	$(this).find("textarea").val("")
-	$("#comments-box").append("<li>  #{data.user.email} dice: <br> #{data.body} </li>")
+	$("#comments-box").append("<blockquote> <label>#{data.user.email} dice:</label><br> #{data.body} </blockquote>")

@@ -9,11 +9,10 @@ class ArticlesController < ApplicationController
   before_action :authenticate_admin!, only: [:destroy, :publish]
 
   def index
+    @header_subtitle = "Todos los Articulos"
   	# obtiene todos los articulos
     #@articles = Article.all
-
     @articles = getPermittedArticles(current_user)
-
 
   end
 
@@ -30,6 +29,10 @@ class ArticlesController < ApplicationController
 
   def edit
   	#@article = Article.find(params[:id])
+    if !(user_signed_in? and current_user.id == @article.user.id and @article.may_publish?)
+    # Se puede Editar si es el usuario que escribió el articulo y si aún no fue publicado
+      redirect_to articles_path
+    end
   end
 
   def create
@@ -49,8 +52,11 @@ class ArticlesController < ApplicationController
 
   def destroy
   	#@article = Article.find(params[:id])
-  	@article.destroy #elimina el objeto de la DB
-  	redirect_to articles_path
+    if @article.may_publish?
+    # Si el articulo pude ser publicado, significa que todavia no fue publicado, por lo tanto puedo eliminarlo
+      @article.destroy #elimina el objeto de la DB
+      redirect_to articles_path
+    end
   end
 
   def update
@@ -80,16 +86,18 @@ class ArticlesController < ApplicationController
   end
 
   def getPermittedArticles current_user
-    if current_user.is_admin?
+
+    if not current_user.nil? and current_user.is_admin?
       # obtiene todos los articulos
       @articles = Article.all.paginate(page: params[:page], per_page: 200)
-    elsif current_user.is_editor? or current_user.is_normal_user?
+    elsif not current_user.nil? and (current_user.is_editor? or current_user.is_normal_user?)
       # obtiene los articulos publicados y los articulos borrador del usuario de la session
       @articles = Article.paginate(page: params[:page], per_page: 200).published.concat(current_user.articles.in_draft)
-    else
+    elsif current_user.nil?
       # obtiene los articulos publicados
       @articles = Article.paginate(page: params[:page], per_page: 200).published  
     end
+
     @articles
   end
 end

@@ -1,21 +1,72 @@
-<ul id="navigation" class="grid_8">
-	<% if user_signed_in? # pregunta si el usuario se encuentra loggeado %>
-		<li>
-			<a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow"><span class="meta"><%= current_user.email %></span><br />Cerrar Sesión</a>
-		</li>
-	<%end%>
-	<% @categories.each do |category| %>
-	<li>
-		<a href="<%= category_path(category) %>"><span class="meta">Categoria</span><br /><%= category.name %></a>
-	</li>
-	<%end%>
-	<li>
-		<a href="<%= articles_path %>"><span class="meta">Articulos</span><br />Todos</a>
-	</li>
-	<li>
-		<a href="<%= root_path %>" class="current"><span class="meta">Principal</span><br />Home</a>
-	</li>
-</ul>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <% if user_signed_in? # pregunta si el usuario se encuentra loggeado %>
+            	<a class="navbar-brand" href=""><%= current_user.email %></a>
+            <%end%>
+        </div>
 
-<div class="hr grid_12">&nbsp;</div>
-<div class="clear"></div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<%= root_path %>">Home</a>
+                </li>
+                <li>
+                    <a href="<%= articles_path %>">Todos los Articulos</a>
+                </li>
+				<% @categories.each do |category| %>
+				<li>
+					<a href="<%= category_path(category) %>"><%= category.name %></a>
+				</li>
+				<%end%>
+
+                <!--<li><a href="contact.html">Contact</a></li>-->
+                
+                <% if user_signed_in? # pregunta si el usuario se encuentra loggeado %>
+				<li>
+					<a href="<%=destroy_user_session_path%>" data-method="delete" rel="nofollow">Cerrar Sesión</a>
+				</li>
+				<%else%>
+				<li>
+					<a href="<%=new_user_session_path%>">Iniciar Sesión</a>
+				</li>
+				<%end%>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('/assets/<%= @header_imgName %>')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <% if @article.nil? or @article.title.nil? %>
+	                <div class="site-heading">
+	                    <h1><%= @header_title %></h1>
+	                    <hr class="small">
+	                    <span class="subheading"><%= @header_subtitle %></span>
+	                </div>
+                <%else%>
+                	<div class="post-heading">
+                        <h1> <%= @article.title %></h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">Escrito por <a href="#"><%= @article.user.email if not @article.user.nil? %></a> el <%= @article.updated_at.strftime("%d/%m/%Y") %></span>
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</header>

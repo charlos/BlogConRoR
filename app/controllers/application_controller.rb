@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
 
   # Se aplica antes de que carge cualquier controlador de la aplicacion
   before_action :set_categories
-
+  before_action :set_header
+  before_action :set_locale
+ 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+  
   protected
 
 	def authenticate_editor!
@@ -20,5 +26,11 @@ class ApplicationController < ActionController::Base
 
   def set_categories
   	@categories = Category.all
+  end
+
+  def set_header
+      @header_imgName = "home-bg.jpg"
+      @header_title = "Mi Blog"
+      @header_subtitle = "Por Carlos Flores"
   end
 end
