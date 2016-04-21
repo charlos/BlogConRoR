@@ -1,0 +1,17 @@
+[33mcommit 0099594d24bbdd705a922e96be39a1f42514b141[m
+Author: charlos <c.hector.flores@gmail.com>
+Date:   Tue Apr 19 17:05:23 2016 -0300
+
+    Se cambia diseño del front-end y se arreglan cuestiones de permisos en las views
+
+[33mcommit ffbc65e36d65a90725f595293333c1486dd77281[m
+Author: charlos <c.hector.flores@gmail.com>
+Date:   Tue Apr 19 17:04:26 2016 -0300
+
+    Se cambia el diseño del front-end, se controlan los permisos de forma mas correcta y se modifican algunas opciones en las vistas
+
+[33mcommit 56e0ef9da03c7ad9173edd6a555d4604e4d3529e[m
+Author: charlos <c.hector.flores@gmail.com>
+Date:   Sun Mar 27 22:01:14 2016 -0300
+
+    Blog en RoR Inicial

@@ -1,2 +1,12 @@
 <%#utiliza la vista parcial _form para evitar repetir condigo (DRY)%>
-<%= render "form", {action_name: "Editar"} %>
+<%= render "form", {action_name: "edit"} %>
+
+<script type="text/javascript">
+	
+	var objInputTitle = document.getElementById('<%= "edit_article_#{@article.id}" %>').article_title;
+	objInputTitle.oninput = function(){
+		var titulo = document.getElementById('article_title');
+		titulo.innerHTML = this.value;
+	};
+
+</script>

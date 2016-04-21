@@ -1,5 +1,6 @@
 <div>
-	<%= @article.body%>
+	<%# Como @article.body posee cód. HTML ingresado por el usuario se debe "sanizar" antes de mostrarlo para evitar cód. malicioso %>
+	<%= Sanitize.fragment(@article.body, Sanitize::Config::RELAXED).html_safe %>
 </div>
 <div>
 	</br>

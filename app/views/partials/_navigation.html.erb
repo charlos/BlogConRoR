@@ -55,13 +55,13 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <% if @article.nil? or @article.title.nil? %>
 	                <div class="site-heading">
-	                    <h1><%= @header_title %></h1>
+	                    <h1 id='header_title'><%= @header_title %></h1>
 	                    <hr class="small">
 	                    <span class="subheading"><%= @header_subtitle %></span>
 	                </div>
                 <%else%>
                 	<div class="post-heading">
-                        <h1> <%= @article.title %></h1>
+                        <h1 id='article_title'> <%= @article.title %></h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">Escrito por <a href="#"><%= @article.user.email if not @article.user.nil? %></a> el <%= @article.updated_at.strftime("%d/%m/%Y") %></span>
                     </div>

@@ -58,3 +58,7 @@ gem 'paperclip'
 gem 'aasm'
 # para hacer paginacion de los rs obtenidos de la DB 
 gem 'will_paginate'
+# para integrar WYSIWYG tanto para crear como para editar un articulo
+gem 'trix'
+# para controlar el código HTML que se ingresa al redactar los articulos
+gem 'sanitize'

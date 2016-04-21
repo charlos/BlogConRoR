@@ -1,4 +1,4 @@
-<h1><%=action_name %> articulo</h1>
+<!-- <h1><%#=action_name %> articulo</h1> -->
 <%= form_for(@article) do |f| %>
 	<% @article.errors.full_messages.each do |message| %>
 		<div>
@@ -6,14 +6,17 @@
 		</div>
 	<%end%>
 	<div>
-		<%= f.text_field :title, placeholder: "Titulo" %>
+		<%= f.text_field :title, placeholder: "Titulo del articulo", :class => "form-title" %>
 	</div>
+	</br>
 	<div>
-		<%= f.file_field :cover %>
+		<%#= f.file_field :cover %>
 	</div>
+
 	<div>
-		<%= f.text_area :body, placeholder: "Escribe aqui el articulo", style:"heigth:250px" %>
+		<%= f.trix_editor :body, placeholder: "Escribe aqui el articulo", :class => "gris"%>
 	</div>
+	
 	<div>
 		<label>Categorías</label>
 		<% @categories.each do |category| %>
@@ -23,8 +26,16 @@
 			<%= category.name %>
 		<%end%>
 	</div>
+	</br>
 	<div>
-		<%= f.submit "Guardar" %>
+		<a href="#" onclick="document.forms['<% if @article.id.nil? %><%= "new_article"%><%else%><%= "edit_article_#{@article.id}"%><%end%>'].submit(); return false;">
+			<div class="btn btn-edit form-group col-xs-4">
+				Guardar
+			</div>
+		</a>
+	</div>
+	<div>
+		<%#= f.submit "Guardar" %>
 	</div>
 	
 <%end%>

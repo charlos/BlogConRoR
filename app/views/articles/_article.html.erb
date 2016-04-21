@@ -4,7 +4,7 @@
             <%= article.title %>
         </h2>
         <h3 class="post-subtitle">
-            <%= article.body.truncate(40)%>
+            <%= article.body.truncate(50).html_safe%>
         </h3>
     </a>
     <p class="post-meta">Escrito por <a href="#"><%= article.user.email if not article.user.nil? %></a> el <%= article.updated_at.strftime("%d/%m/%Y") %> </p>

@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @header_subtitle = "Crear Articulo"
   	@article = Article.new
     @categories = Category.all
   end
